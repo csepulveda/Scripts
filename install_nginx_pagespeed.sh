@@ -1,10 +1,9 @@
 #!/bin/bash
 cd /usr/src
 aptitude update
-sudo apt-get install dpkg-dev -y
+sudo apt-get install dpkg-dev git -y
 sudo apt-get source nginx -y 
 sudo apt-get build-dep nginx -y
-aptitude install git -y
 git clone https://github.com/pagespeed/ngx_pagespeed.git
 cd ngx_pagespeed
 wget https://dl.google.com/dl/page-speed/psol/1.7.30.1.tar.gz
