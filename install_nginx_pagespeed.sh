@@ -22,5 +22,4 @@ patch -p1 -l <<'EOF'
  	    --add-module=$(MODULESDIR)/headers-more-nginx-module \
 EOF
 dpkg-buildpackage -b
-dpkg -i /usr/src/nginx-common_1.*all.deb
-dpkg -i /usr/src/nginx-extras_1.*.deb
+dpkg -i /usr/src/nginx-common_1.*all.deb /usr/src/nginx-extras_1.*.deb
