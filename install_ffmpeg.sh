@@ -1,7 +1,8 @@
 #!/bin/bash
 version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos)" | uniq`
 
-function install_ubuntu {
+case $version in
+ubuntu)
 	aptitude update
 	aptitude install -y build-essential git libfaac-dev libfaac0 git make
 	echo "PATH=/opt/ffmpeg/bin/:\$PATH" >> ~/.bashrc
@@ -38,8 +39,8 @@ function install_ubuntu {
 	make install
 	make distclean
 	hash -r
-}
-function install_centos {
+	;;
+centos)
 	yum install -y autoconf automake gcc gcc-c++ git libtool make nasm pkgconfig zlib-devel wget
 	echo "PATH=/opt/ffmpeg/bin/:\$PATH" >> ~/.bashrc
 
@@ -88,12 +89,6 @@ function install_centos {
 
 	echo "/opt/ffmpeg/lib" > /etc/ld.so.conf.d/ffmpeg.conf
 	ldconfig
-}
-
-case $version in
-ubuntu) install_ubuntu
-	;;
-centos) install_centos
 	;;
 *) echo "none"
 	;;
