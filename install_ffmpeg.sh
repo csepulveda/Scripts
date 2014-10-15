@@ -1,5 +1,5 @@
 #!/bin/bash
-version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos|debian)" | uniq`
+version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos|debian)" | head -n1 `
 
 function install_ubuntu {
         aptitude update
