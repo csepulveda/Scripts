@@ -1,5 +1,5 @@
 #!/bin/bash
-version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos)" | uniq`
+version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos|debian)" | uniq`
 
 function install_ubuntu {
         aptitude update
@@ -96,6 +96,8 @@ case $version in
 ubuntu) install_ubuntu
         ;;
 centos) install_centos
+        ;;
+debian) install_ubuntu
         ;;
 *) echo "none"
         ;;
