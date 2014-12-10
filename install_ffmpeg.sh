@@ -36,6 +36,7 @@ function install_ubuntu {
             --extra-libs="-ldl" --enable-gpl --enable-libfaac\
             --enable-libx264 --enable-nonfree
         make -j 8
+        make tools/qt-faststart
         make install
         make distclean
         hash -r
