@@ -2,8 +2,8 @@
 version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos|debian)" | head -n1 `
 
 function install_ubuntu {
-        aptitude update
-        aptitude install -y build-essential git libfaac-dev libfaac0 git make
+        apt-get update
+        apt-get install -y build-essential git libfaac-dev libfaac0 git make
         echo "PATH=/opt/ffmpeg/bin/:\$PATH" >> ~/.bashrc
         PATH=/opt/ffmpeg/bin/:$PATH
 
@@ -29,6 +29,8 @@ function install_ubuntu {
         cd ~/ffmpeg_sources
         git clone --depth 1 git://source.ffmpeg.org/ffmpeg
         cd ffmpeg
+        git fetch --tag
+        git checkout n3.1
         PKG_CONFIG_PATH="/opt/ffmpeg/lib/pkgconfig"
         export PKG_CONFIG_PATH
         ./configure --prefix="/opt/ffmpeg" \
