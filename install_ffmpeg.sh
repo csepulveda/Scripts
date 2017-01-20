@@ -104,7 +104,7 @@ centos) install_centos
         ;;
 debian) install_ubuntu
         ;;
-amazon) install_ubuntu
+amazon) install_centos
         ;;
 *) echo "none"
         ;;
