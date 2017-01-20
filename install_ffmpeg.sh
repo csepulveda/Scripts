@@ -1,5 +1,5 @@
 #!/bin/bash
-version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos|debian)" | head -n1 `
+version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|centos|debian|amazon)" | head -n1 `
 
 function install_ubuntu {
         apt-get update
@@ -80,6 +80,8 @@ function install_centos {
         cd ~/ffmpeg_sources
         git clone --depth 1 git://source.ffmpeg.org/ffmpeg
         cd ffmpeg
+        git fetch --tag
+        git checkout n3.1
         PKG_CONFIG_PATH="/opt/ffmpeg/lib/pkgconfig"
         export PKG_CONFIG_PATH
         ./configure --prefix="/opt/ffmpeg" \
@@ -101,6 +103,8 @@ ubuntu) install_ubuntu
 centos) install_centos
         ;;
 debian) install_ubuntu
+        ;;
+amazon) install_ubuntu
         ;;
 *) echo "none"
         ;;
