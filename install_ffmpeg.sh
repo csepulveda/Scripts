@@ -3,7 +3,7 @@ version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|cento
 
 function install_ubuntu {
         apt-get update
-        apt-get install -y build-essential git libfaac-dev libfaac0 git make
+        apt-get install -y build-essential git libfaac-dev libfaac0 git make libssl-dev
         echo "PATH=/opt/ffmpeg/bin/:\$PATH" >> ~/.bashrc
         PATH=/opt/ffmpeg/bin/:$PATH
 
@@ -13,7 +13,7 @@ function install_ubuntu {
         tar xzvf yasm-1.2.0.tar.gz
         cd yasm-1.2.0
         ./configure --prefix="/opt/ffmpeg"
-        make -j 8
+        make -j 32
         make install
         make distclean
         . ~/.profile
@@ -22,7 +22,7 @@ function install_ubuntu {
         git clone --depth 1 git://git.videolan.org/x264.git
         cd x264
         ./configure --prefix="/opt/ffmpeg" --enable-static
-        make -j 8
+        make -j 32
         make install
         make distclean
 
@@ -35,9 +35,9 @@ function install_ubuntu {
         export PKG_CONFIG_PATH
         ./configure --prefix="/opt/ffmpeg" \
             --extra-cflags="-I/opt/ffmpeg/include" --extra-ldflags="-L/opt/ffmpeg/lib" \
-            --extra-libs="-ldl" --enable-gpl --enable-libfaac\
-            --enable-libx264 --enable-nonfree
-        make -j 8
+            --extra-libs="-ldl" --enable-gpl --enable-libfaac \
+            --enable-libx264 --enable-nonfree --enable-openssl
+        make -j 32
         make tools/qt-faststart
         make install
         make distclean
