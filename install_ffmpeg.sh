@@ -3,7 +3,7 @@ version=`cat /etc/*release| tr '[:upper:]' '[:lower:]' | egrep -o "(ubuntu|cento
 
 function install_ubuntu {
         apt-get update
-        apt-get install -y build-essential git libfaac-dev libfaac0 git make libssl-dev
+        apt-get install -y build-essential git libfaac-dev libfaac0 git make libssl-dev libvpx-dev libvpx1
         echo "PATH=/opt/ffmpeg/bin/:\$PATH" >> ~/.bashrc
         PATH=/opt/ffmpeg/bin/:$PATH
 
@@ -36,7 +36,7 @@ function install_ubuntu {
         ./configure --prefix="/opt/ffmpeg" \
             --extra-cflags="-I/opt/ffmpeg/include" --extra-ldflags="-L/opt/ffmpeg/lib" \
             --extra-libs="-ldl" --enable-gpl --enable-libfaac \
-            --enable-libx264 --enable-nonfree --enable-openssl
+            --enable-libx264 --enable-nonfree --enable-openssl --enable-libvpx
         make -j 32
         make tools/qt-faststart
         make install
