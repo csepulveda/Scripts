@@ -90,6 +90,9 @@ function install_centos {
             --enable-libx264 --enable-nonfree
         make -j 8
         make install
+        make tools/qt-faststart
+        cp  tools/qt-faststart /opt/ffmpeg/bin/.
+        ln -s /opt/ffmpeg/bin/* /usr/local/bin/ 
         make distclean
         hash -r
 
