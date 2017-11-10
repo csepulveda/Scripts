@@ -38,8 +38,10 @@ function install_ubuntu {
             --extra-libs="-ldl" --enable-gpl --enable-libfaac \
             --enable-libx264 --enable-nonfree --enable-openssl --enable-libvpx
         make -j 32
-        make tools/qt-faststart
         make install
+        make tools/qt-faststart
+        cp  tools/qt-faststart /opt/ffmpeg/bin/.
+        ln -s /opt/ffmpeg/bin/* /usr/local/bin/ 
         make distclean
         hash -r
 }
